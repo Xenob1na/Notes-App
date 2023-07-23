@@ -4,7 +4,7 @@
             <div class="container">
               <span  class="close text-[#aaa] float-right text-[28px] mb-[30px] font-semibold" aria-label="close" @click="closeModal">&times;</span>
             <form class="model-content" @submit.prevent="addItemAndClear(todo)">
-              <input v-model="todo" type="text" class="text outline-none    font-normal  leading-4 text-[#212529] bg-clip-padding border-solid  rounded-[8px]" placeholder="Your notes">
+              <input v-model="todo" type="text" class="text outline-none font-normal  leading-4 text-[#212529] bg-clip-padding border-solid  rounded-[8px]" placeholder="Your notes">
               <button class="text-[#fff] bg-[#54BD95] w-[100%] pt-3 pb-3 rounded-[12px] hover:bg-[#37785f] delay-[100ms] transition-all text-[16px] text-center">Add</button>
             </form>
             </div>

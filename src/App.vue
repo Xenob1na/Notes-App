@@ -6,12 +6,14 @@ import Modal from './components/Modal.vue'
 
 const store = useTodoListStore();
 const { todoList } = storeToRefs(store);
-const { toggleCompeted, deleteTodo } = store;
-const IsModal = ref(false)
-const query = ref("")
+const { toggleCompeted, deleteTodo} = store;
+const IsModal = ref(false);
+const query = ref('');
 
 const querySearch = computed(() => {
-  return todoList.value.filter((todo) => todo.toString().indexOf(query.value) !== -1);
+  return todoList.value.filter(todo => {
+    return todo.item.toLowerCase().includes(query.value.toLowerCase())
+  });
 })
 
 function OpenModel() {
@@ -26,7 +28,7 @@ function OpenModel() {
     <div class="max-w-[400px] mx-auto mt-4">
       <form @click.prevent="" class="relative">
               <input 
-              type="search" 
+              type="text" 
               placeholder="Search"
               v-model="query"
               class="rounded-[70px] block text-[#A6A6A6] border-2 border-[#A6A6A6] w-[410px] bg-[#161C28] p-5 outline-none"
@@ -54,11 +56,10 @@ function OpenModel() {
         />
       </div>
       </div>
-      {{ query }}
       <div class="mt-9 max-w-[1000px] mx-auto">
         <div class="inline-grid grid-cols-2 gap-8 ">
           <div v-for="(todo, index) in querySearch" :key="todo.id" class="bg-[#E4EE9A] py-5 px-9 min-w-[500px] text-center rounded-[20px]" :class="{'bg-[#e2ee83]': todo.completed}">
-            <div class="">
+            <div>
               <p class="text-[18px] font-semibold" :class="{'line-through': todo.completed}">{{ todo.item }}</p>
             </div>
             <div class="mt-2" :class="{'line-through': todo.completed}">
@@ -78,6 +79,9 @@ function OpenModel() {
             </div>
           </div>
         </div>
+      </div>
+      <div v-if="todoList.length === 0">
+        <h3 class="text-center text-[25px] text-white">No tasks, create them!!!</h3>
       </div>
    </div>
   </div>

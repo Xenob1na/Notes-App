@@ -22,6 +22,8 @@ export const useTodoListStore = defineStore('todoList', {
             item,
             id: this.id++,
             completed: false,
+            important: false,
+            veryimportant: false,
             date: new Date().toLocaleDateString()
         })
     },
